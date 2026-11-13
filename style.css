@@ -1,0 +1,31 @@
+.projects.concept-gallery-grid {
+  display: block;
+}
+
+.concept-gallery {
+  width: min(100%, 940px);
+  margin-inline: auto;
+}
+
+.project-intro {
+  width: min(100%, 760px);
+  max-width: none;
+  margin: 24px auto 0 0;
+  gap: 12px;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.project-intro p {
+  margin: 0;
+}
+
+#projects > .disclaimer {
+  margin-top: 40px;
+}
+
+@media (max-width: 700px) {
+  .project-intro {
+    font-size: 12px;
+  }
+}

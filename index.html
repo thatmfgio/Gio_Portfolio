@@ -14,7 +14,7 @@
       --paper: #ffffff;
       --soft: #f3f3f3;
       --line: #e8e8e8;
-      --sans: "Segoe UI", Arial, sans-serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     * { box-sizing: border-box; }
@@ -158,12 +158,12 @@
       width: min(250px, 87%);
       aspect-ratio: 1;
       border-radius: 50%;
-      background: linear-gradient(
-        to bottom,
+      background: radial-gradient(
+        circle,
         rgba(232, 60, 50, 1) 0%,
-        rgba(232, 60, 50, .96) 30%,
-        rgba(232, 60, 50, .45) 60%,
-        rgba(232, 60, 50, 0) 75%
+        rgba(232, 60, 50, .96) 34%,
+        rgba(232, 60, 50, .52) 46%,
+        rgba(232, 60, 50, 0) 56%
       );
       transform: translateX(-50%);
     }
@@ -265,8 +265,10 @@
     h2 { margin: 0; font-size: clamp(27px, 4vw, 37px); letter-spacing: -.055em; line-height: 1.1; }
     h2 span { color: var(--red); font-weight: 500; font-style: italic; }
     .section-intro { max-width: 320px; margin: 0; color: var(--muted); font-size: 10px; line-height: 1.6; }
+    .project-intro { display: grid; gap: 7px; }
+    .project-intro p { margin: 0; }
 
-    .service-list { display: grid; gap: 9px; }
+    .service-list { display: grid; gap: 12px; }
     .service {
       overflow: hidden;
       border: 1px solid #f0f0f0;
@@ -275,10 +277,10 @@
     }
     .service summary {
       display: grid;
-      grid-template-columns: 65px 1fr 30px;
+      grid-template-columns: 48px minmax(0, 1fr) 30px;
       align-items: center;
-      gap: 15px;
-      padding: 17px 23px;
+      gap: 12px;
+      padding: 18px 20px;
       cursor: pointer;
       list-style: none;
     }
@@ -301,14 +303,28 @@
     .service[open] .service-toggle::before { content: "×"; }
     .service-body {
       display: grid;
-      grid-template-columns: 65px minmax(0, 1fr);
-      gap: 15px;
-      padding: 0 23px 24px;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 12px;
+      padding: 0 20px 24px;
     }
     .service-content { max-width: 590px; }
-    .service-tags { display: flex; flex-wrap: wrap; gap: 7px; }
-    .service-tags span { padding: 5px 9px; border: 1px solid #444; border-radius: 20px; color: #e2e2e2; font-size: 9px; }
-    .service-content p { max-width: 460px; margin: 12px 0 16px; color: #b7b7b7; font-size: 10px; line-height: 1.7; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .service-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 9px;
+      border: 1px solid #444;
+      border-radius: 20px;
+      background: transparent;
+      color: #e2e2e2;
+      font: inherit;
+      font-size: 9px;
+      line-height: 1.2;
+      white-space: nowrap;
+      cursor: pointer;
+      transform-origin: center;
+    }
+    .service-content p { max-width: 460px; margin: 14px 0 18px; color: #b7b7b7; font-size: 10px; line-height: 1.7; }
     .design-preview {
       min-height: 145px;
       display: grid;
@@ -357,31 +373,25 @@
     .about-copy .lead { color: #111; font-size: 20px; font-weight: 650; letter-spacing: -.04em; line-height: 1.35; }
     .text-link { display: inline-flex; gap: 8px; margin-top: 5px; color: var(--red); font-size: 12px; font-weight: 650; text-decoration: none; }
 
-    .concept-gallery {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      grid-template-rows: repeat(3, minmax(0, 1fr));
-      gap: 6px;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      border-radius: 12px;
-      background: #efefef;
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .project-card { overflow: hidden; border: 1px solid var(--line); border-radius: 12px; }
+    .project-visual { min-height: 205px; display: grid; place-items: center; padding: 22px; background: #f5e1dc; }
+    .project-card:nth-child(2) .project-visual { background: #e6e8e7; }
+    .project-window {
+      width: 82%;
+      min-height: 140px;
+      padding: 12px;
+      border-radius: 7px;
+      background: white;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .1);
     }
-    .concept-gallery figure {
-      min-width: 0;
-      min-height: 0;
-      display: grid;
-      place-items: center;
-      margin: 0;
-      overflow: hidden;
-      background: #f5f5f5;
-    }
-    .concept-gallery img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
+    .project-window strong { display: block; font-size: 9px; }
+    .project-window b { display: block; max-width: 170px; margin-top: 20px; font-size: 22px; letter-spacing: -.06em; line-height: 1; }
+    .project-window b em { color: var(--red); }
+    .project-window i { display: inline-block; width: 55px; height: 17px; margin-top: 12px; border-radius: 15px; background: #111; }
+    .project-info { padding: 15px 17px; }
+    .project-info h3 { margin: 0; font-size: 15px; }
+    .project-info p { margin: 5px 0 0; color: var(--muted); font-size: 10px; }
     .disclaimer { margin: 16px 0 0; color: var(--muted); font-size: 10px; }
 
     .quote-panel { padding: 38px; border-radius: 14px; background: #f4f4f4; }
@@ -456,7 +466,8 @@
       .about-portrait { min-height: 0; width: min(100%, 340px); aspect-ratio: 1.2; margin-inline: auto; }
       .about-copy p { font-size: 13px; }
       .about-copy .lead { font-size: 19px; }
-      .concept-gallery { gap: 4px; border-radius: 9px; }
+      .projects { grid-template-columns: minmax(0, 1fr); }
+      .project-visual { min-height: clamp(180px, 54vw, 250px); }
       .quote-panel { padding: 28px; }
       .contact-panel { padding: 30px; }
       footer { flex-wrap: wrap; }
@@ -483,13 +494,13 @@
       .service-title { font-size: 13px; line-height: 1.35; }
       .service-body { grid-template-columns: 34px minmax(0, 1fr); gap: 8px; padding: 0 14px 18px; }
       .service-content { min-width: 0; }
-      .service-tags span { font-size: 9px; }
+      .service-tag { font-size: 9px; }
       .design-preview { min-height: 0; grid-template-columns: minmax(0, 1fr); }
       .preview-copy { padding: 4px; }
       .preview-copy strong { font-size: 18px; }
       .preview-screen { min-height: 105px; }
-      .concept-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; aspect-ratio: auto; }
-      .concept-gallery figure { aspect-ratio: 1.15; }
+      .projects { grid-template-columns: minmax(0, 1fr); }
+      .project-visual { min-height: 190px; }
       .quote-panel, .contact-panel { padding: 24px 20px; }
       .quote-panel blockquote { font-size: 22px; }
       .contact-panel { align-items: flex-start; flex-direction: column; }
@@ -514,6 +525,7 @@
       *, *::before, *::after { transition-duration: .01ms !important; }
     }
   </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="site">
@@ -604,7 +616,7 @@
             <div class="service-body">
               <span aria-hidden="true"></span>
               <div class="service-content">
-                <div class="service-tags"><span>Interface Layouts</span><span>Usability</span><span>Visual Hierarchy</span></div>
+                <div class="service-tags"><button class="service-tag" type="button">Interface Layouts</button><button class="service-tag" type="button">Usability</button><button class="service-tag" type="button">Visual Hierarchy</button></div>
                 <p>Exploring ways to make digital products feel clear, thoughtful, and easy to use.</p>
               </div>
             </div>
@@ -620,7 +632,7 @@
               <span aria-hidden="true"></span>
               <div class="service-content">
                 <div class="service-tags">
-                  <span>Responsive Web</span><span>Wireframing</span><span>Interface Ideas</span><span>Visual Direction</span>
+                  <button class="service-tag" type="button">Responsive Web</button><button class="service-tag" type="button">Wireframing</button><button class="service-tag" type="button">Interface Ideas</button><button class="service-tag" type="button">Visual Direction</button>
                 </div>
                 <p>From early sketches to polished concepts, I like bringing digital ideas to life with care for both the details and the bigger picture.</p>
                 <div class="design-preview" role="img" aria-label="Illustrated preview of a clean dashboard and responsive interface">
@@ -650,7 +662,7 @@
             <div class="service-body">
               <span aria-hidden="true"></span>
               <div class="service-content">
-                <div class="service-tags"><span>Typography</span><span>Color</span><span>Art Direction</span></div>
+                <div class="service-tags"><button class="service-tag" type="button">Typography</button><button class="service-tag" type="button">Color</button><button class="service-tag" type="button">Art Direction</button></div>
                 <p>Playing with color, type, and composition to give an idea a visual voice of its own.</p>
               </div>
             </div>
@@ -679,20 +691,36 @@
             <p class="section-kicker">A few explorations</p>
             <h2>Selected <span>concepts</span></h2>
           </div>
-          <p class="section-intro">A visual collection of the references and ideas that inspire my creative explorations.</p>
         </div>
-        <div class="concept-gallery" role="group" aria-label="Visual inspiration gallery">
-          <figure><img src="concept-images/concept-01.jpg" alt="Dark architectural portfolio website concept"></figure>
-          <figure><img src="concept-images/concept-02.jpg" alt="Warm coffee shop landing page concept"></figure>
-          <figure><img src="concept-images/concept-03.jpg" alt="Blue AI and strategy consulting website concept"></figure>
-          <figure><img src="concept-images/concept-04.jpg" alt="Dark Tokyo travel website concept"></figure>
-          <figure><img src="concept-images/concept-05.jpg" alt="Minimal mindfulness app landing page concept"></figure>
-          <figure><img src="concept-images/concept-06.jpg" alt="Minimal monochrome fashion store website concept"></figure>
-          <figure><img src="concept-images/concept-07.jpg" alt="Portrait photo reference"></figure>
-          <figure><img src="concept-images/concept-08.jpg" alt="Bright colorful creative studio portfolio concept"></figure>
-          <figure><img src="concept-images/concept-09.jpg" alt="Dark artisan bakery website concept"></figure>
+        <div class="projects">
+          <article class="project-card">
+            <div class="project-visual" role="img" aria-label="Bakery website concept preview">
+              <div class="project-window">
+                <strong>crumb &amp; co.</strong>
+                <b>Good days start with <em>good bread.</em></b>
+                <i aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="project-info"><h3>Crumb &amp; Co.</h3><p>Brand direction · Web concept</p></div>
+          </article>
+          <article class="project-card">
+            <div class="project-visual" role="img" aria-label="Nature retreat website concept preview">
+              <div class="project-window">
+                <strong>somewhere slow</strong>
+                <b>Find your way <em>outside.</em></b>
+                <i aria-hidden="true"></i>
+              </div>
+            </div>
+            <div class="project-info"><h3>Somewhere Slow</h3><p>Product concept · Art direction</p></div>
+          </article>
         </div>
-        <p class="disclaimer">A collage of visual references and inspiration.</p>
+        <div class="section-intro project-intro">
+          <p>I enjoy creating websites that turn ideas into engaging digital experiences.</p>
+          <p>Each concept starts with a clear purpose, then grows through thoughtful layouts, expressive colors, and type that gives it a distinct personality.</p>
+          <p>I pay attention to the details that make a site feel intuitive, from how content flows to how each page adapts across screens.</p>
+          <p>These personal explorations let me experiment, learn, and keep finding new ways to make the web feel creative and memorable.</p>
+        </div>
+        <p class="disclaimer">Personal concept studies — not commissioned client work.</p>
       </section>
 
       <section class="section container" id="testimonials">
@@ -732,5 +760,6 @@
       <span>Made with care.</span>
     </footer>
   </div>
+  <script src="script.js" defer></script>
 </body>
 </html>
